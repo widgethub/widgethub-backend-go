@@ -8,7 +8,7 @@ import (
 
 // base command that executes
 var RootCmd = &cobra.Command {
-	Use: "Root command",
+	Use: "root",
 	Short: "this start everything",
 	Long: "This start everything",
 }

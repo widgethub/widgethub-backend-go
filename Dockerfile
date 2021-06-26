@@ -1,17 +1,23 @@
 #build stage
 FROM golang:alpine AS builder
+RUN mkdir /app
 WORKDIR /app
 
-RUN chmod +x /app
-COPY . ./
+COPY go.mod .
+COPY go.sum .
+
 RUN go mod download
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o /go/bin/app
 
 #final stage
 FROM scratch
-COPY --from=builder ./ /app
-WORKDIR /app
+COPY --from=builder /go/bin/app /go/bin/app
 
 LABEL Name=widgethubbackend Version=0.0.1
+
+ENTRYPOINT ["/go/bin/app"]
 
 # to add a service, add a port
 EXPOSE 8080
