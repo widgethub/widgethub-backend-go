@@ -5,6 +5,10 @@ services:
     image: widgethubbackend
     ports:
       - 8080:8080
+  expressbackend:
+    image: expressbackend
+    ports:
+      3000:3000
   db:
     image: "postgres" 
     environment: 
