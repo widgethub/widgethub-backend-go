@@ -1,5 +1,5 @@
 docker-build:
-	docker build -t widgethub .
+	docker build -t widgethubbackend .
 
 docker-run:
 	docker-compose up

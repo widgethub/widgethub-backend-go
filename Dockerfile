@@ -15,12 +15,10 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o /go/
 FROM scratch
 COPY --from=builder /go/bin/app /go/bin/app
 
-LABEL Name=widgethubbackend Version=0.0.1
-
 ENTRYPOINT ["/go/bin/app"]
 
 # to add a service, add a port
 EXPOSE 8080
 
 # change this to test individually
-CMD ["go", "run", "main.go", "all"]
+CMD ["all"]
