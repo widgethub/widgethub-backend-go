@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  widgethubbackend:
+    image: widgethubbackend
+    ports:
+      - 8080:8080
+  db:
+    image: "postgres" 
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/data
+    ports:
+      - 5432:5432
+  
+volumes:
+  db-data:
